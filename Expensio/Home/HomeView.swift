@@ -33,8 +33,7 @@ struct HomeView: View {
                             .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
 
                     }
-                    
-                    .onDelete(perform: deleteExpense)
+                    .onDelete(perform: viewModel.deleteExpense)
                 }
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
@@ -64,11 +63,7 @@ struct HomeView: View {
 //        .searchable(text: $text)
     }
     
-    private func deleteExpense(insites: IndexSet) {
-        guard let indexPath = insites.first else { return }
-//        _ = viewModel.expensies[indexPath]
-        viewModel.expensies.remove(at: indexPath)
-    }
+
 }
 
 #Preview {
@@ -83,7 +78,7 @@ struct ExpenseRowView: View {
     
     var body: some View {
         HStack {
-            Text(expense.category.emoji)
+            Text(expense.category?.emoji ?? "")
                 .font(.system(size: 26))
                 .foregroundColor(Color.accentColor)
                 .frame(width: 50, height: 50)
@@ -93,10 +88,10 @@ struct ExpenseRowView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 14))
             
             VStack(alignment: .leading, spacing: 6) {
-                Text(expense.title)
+                Text(expense.title ?? "")
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundColor(Color.primary)
-                Text("⏰ \(expense.dateCreated)")
+                Text("⏰ \(String(describing: expense.dateCreated))")
                     .font(.system(size: 14))
                     .foregroundColor(Color.secondary)
             }

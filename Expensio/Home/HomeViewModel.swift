@@ -10,10 +10,12 @@ import Foundation
 @Observable
 class HomeViewModel {
     
+    let store = EXPersistenceStore.shared
+    
     var expensies: [Expense] = []
     var totalAmount: Double = 0.00
-    let categories: [Category] = Category.data
-    var selectedCategory: Category = Category.data[0]
+    var categories: [Category] = []
+    var selectedCategory = StoredCategory.data[0]
     var amount: String = ""
     var title: String = ""
     var note: String = ""
@@ -21,18 +23,33 @@ class HomeViewModel {
     var errorMessage: String = ""
     var showError: Bool = false
     
+    init() {
+        getCategories()
+        getExpenses()
+    }
+    
     
     func addNewExpense() {
         if validateAddExpenseFields() {
-            guard let amountAsDouble = Double(amount) else { return }
-            let newExpense = Expense(amount: amountAsDouble, title: title, category: selectedCategory, note: note)
-            expensies.append(newExpense)
+            guard let amountAsDouble = Double(amount) else {
+                showError = true
+                errorMessage = "The amount should should be a valid number"
+                return
+            }
+            let category = store.addNewCategory(emoji: selectedCategory.emoji, name: selectedCategory.name)
+            store.addNewExpense(amount: amountAsDouble, title: title, category: category, note: note)
+            getExpenses()
             totalAmount += amountAsDouble
         }
     }
     
+    
     func validateAddExpenseFields() -> Bool {
-        guard let amountAsDouble = Double(amount) else { return false }
+        guard let amountAsDouble = Double(amount) else {
+            showError = true
+            errorMessage = "Your amount should be a valid number"
+            return false
+        }
         if amountAsDouble < 0 ||
             title.isEmpty {
             showError = true
@@ -46,6 +63,22 @@ class HomeViewModel {
         amount = ""
         title = ""
         note = ""
+    }
+    
+    func getExpenses() {
+        let expenses = store.getExpenses()
+        self.expensies = expenses
+    }
+    
+    func getCategories() {
+        let categories = store.getCategories()
+        self.categories = categories
+    }
+    
+    func deleteExpense(insets: IndexSet) {
+        guard let indexPath = insets.first else { return }
+        let expnese = expensies[indexPath]
+        store.deleteExpense(expnese)
     }
     
 }

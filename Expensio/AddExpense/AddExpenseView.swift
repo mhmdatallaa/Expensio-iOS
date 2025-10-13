@@ -16,13 +16,6 @@ struct AddExpenseView: View {
     var body: some View {
         NavigationView {
             VStack {
-//                Text("Add new expense")
-//                    .font(.headline)
-//                    .fontWeight(.bold)
-//                    .padding()
-//                    .padding(.bottom)
-               
-                
                 Form {
                     Section {
                         VStack {
@@ -40,8 +33,8 @@ struct AddExpenseView: View {
                         TextField("Title: ex: Coffee with friends", text: $viewModel.title)
                             .padding(.leading)
                         Picker("Category", selection: $viewModel.selectedCategory) {
-                                ForEach(viewModel.categories) { category in
-                                    Text("\(category.emoji) \(category.title)").tag(category)
+                            ForEach(StoredCategory.data) { category in
+                                    Text("\(category.emoji) \(category.name)").tag(category)
                                 }
                             }
                             .pickerStyle(.menu)
@@ -62,7 +55,7 @@ struct AddExpenseView: View {
                                 .opacity(0.7)
                             
                             LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 4), spacing: 16) {
-                                ForEach(viewModel.categories[0..<4]) { category in
+                                ForEach(StoredCategory.data[0..<4]) { category in
                                     QuickCategoryItemView(categoryItem: category, selectedCategory: $viewModel.selectedCategory).tag(category)
                                         .onTapGesture {
                                             viewModel.selectedCategory = category
@@ -75,8 +68,8 @@ struct AddExpenseView: View {
                 }
 //                .padding(.top)
                 Button {
+                    viewModel.addNewExpense()
                     if !viewModel.showError {
-                        viewModel.addNewExpense()
                         viewModel.resetFields()
                         dismiss()
                     }
@@ -108,21 +101,21 @@ struct AddExpenseView: View {
 
 // MARK: - Quick Category Item Component
 struct QuickCategoryItemView: View {
-    let categoryItem: Category
-    @Binding var selectedCategory: Category
+    let categoryItem: StoredCategory
+    @Binding var selectedCategory: StoredCategory
 
     var body: some View {
         VStack(spacing: 4) {
             Text(categoryItem.emoji)
                 .font(.system(size: 28))
-            Text(categoryItem.title)
+            Text(categoryItem.name)
                 .font(.system(size: 12))
                 .fontWeight(categoryItem.id == selectedCategory.id ? .semibold : .regular)
                 .foregroundColor(categoryItem.id == selectedCategory.id ? .blue : .secondary)
         }
         .frame(maxWidth: .infinity)
         .padding(8)
-        .background(categoryItem.id == selectedCategory.id ? Color.blue.opacity(0.2) : Color.white)
+        .background(categoryItem.id == selectedCategory.id ? Color.blue.opacity(0.2) : Color(.systemBackground))
         .cornerRadius(12)
         .shadow(color: .black.opacity(categoryItem.id == selectedCategory.id ? 0 : 0.1), radius: 4)
         
