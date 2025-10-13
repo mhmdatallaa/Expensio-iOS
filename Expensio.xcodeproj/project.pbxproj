@@ -18,9 +18,10 @@
 		6D45D2DE2E9D2291006089E6 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2DD2E9D2291006089E6 /* Expense.swift */; };
 		6D45D2E12E9D22EA006089E6 /* Expensio.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2DF2E9D22EA006089E6 /* Expensio.xcdatamodeld */; };
 		6D45D2E42E9D2584006089E6 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2E32E9D2584006089E6 /* Category.swift */; };
-		6D45D2E62E9D42E5006089E6 /* EXPersisting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2E52E9D42E5006089E6 /* EXPersisting.swift */; };
+		6D45D2E62E9D42E5006089E6 /* ExStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2E52E9D42E5006089E6 /* ExStore.swift */; };
 		6D45D2E92E9D434B006089E6 /* CoreDateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2E82E9D434B006089E6 /* CoreDateStorage.swift */; };
 		6D45D2EB2E9D4423006089E6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2EA2E9D4423006089E6 /* Logger.swift */; };
+		6D45D2F72E9D4821006089E6 /* EXPersistenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D45D2F62E9D4821006089E6 /* EXPersistenceStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +36,10 @@
 		6D45D2DD2E9D2291006089E6 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		6D45D2E02E9D22EA006089E6 /* Expensio.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Expensio.xcdatamodel; sourceTree = "<group>"; };
 		6D45D2E32E9D2584006089E6 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		6D45D2E52E9D42E5006089E6 /* EXPersisting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXPersisting.swift; sourceTree = "<group>"; };
+		6D45D2E52E9D42E5006089E6 /* ExStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExStore.swift; sourceTree = "<group>"; };
 		6D45D2E82E9D434B006089E6 /* CoreDateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDateStorage.swift; sourceTree = "<group>"; };
 		6D45D2EA2E9D4423006089E6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		6D45D2F62E9D4821006089E6 /* EXPersistenceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EXPersistenceStore.swift; sourceTree = "<group>"; };
 		6D742E8B2E92C276000A84EC /* Expensio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expensio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,7 +67,7 @@
 				6D45D2E22E9D2578006089E6 /* Model */,
 				6D45D2DF2E9D22EA006089E6 /* Expensio.xcdatamodeld */,
 				6D45D2E72E9D4332006089E6 /* Storage */,
-				6D45D2EA2E9D4423006089E6 /* Logger.swift */,
+				6D45D2F52E9D4501006089E6 /* Logger */,
 			);
 			path = Expensio;
 			sourceTree = "<group>";
@@ -99,10 +101,19 @@
 		6D45D2E72E9D4332006089E6 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				6D45D2E52E9D42E5006089E6 /* EXPersisting.swift */,
+				6D45D2E52E9D42E5006089E6 /* ExStore.swift */,
 				6D45D2E82E9D434B006089E6 /* CoreDateStorage.swift */,
+				6D45D2F62E9D4821006089E6 /* EXPersistenceStore.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		6D45D2F52E9D4501006089E6 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				6D45D2EA2E9D4423006089E6 /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		6D742E822E92C276000A84EC = {
@@ -196,6 +207,7 @@
 			files = (
 				6D45D2D02E9D07FD006089E6 /* AddExpenseView.swift in Sources */,
 				6D45D2DA2E9D0D34006089E6 /* HomeViewModel.swift in Sources */,
+				6D45D2F72E9D4821006089E6 /* EXPersistenceStore.swift in Sources */,
 				6D45D2E12E9D22EA006089E6 /* Expensio.xcdatamodeld in Sources */,
 				6D45D2DE2E9D2291006089E6 /* Expense.swift in Sources */,
 				6D45D2D32E9D07FD006089E6 /* ExpensioApp.swift in Sources */,
@@ -204,7 +216,7 @@
 				6D45D2EB2E9D4423006089E6 /* Logger.swift in Sources */,
 				6D45D2D62E9D07FD006089E6 /* RootView.swift in Sources */,
 				6D45D2E92E9D434B006089E6 /* CoreDateStorage.swift in Sources */,
-				6D45D2E62E9D42E5006089E6 /* EXPersisting.swift in Sources */,
+				6D45D2E62E9D42E5006089E6 /* ExStore.swift in Sources */,
 				6D45D2E42E9D2584006089E6 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

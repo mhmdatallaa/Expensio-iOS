@@ -8,29 +8,29 @@
 import Foundation
 
 
-struct Category: Identifiable, Hashable {
-    let id = UUID()
+struct StoredCategory: Identifiable, Hashable {
+    let id = UUID().uuidString
     let emoji: String
-    let title: String
+    let name: String
     
-    static let data: [Category] = [
-            .init(emoji: "🚌", title: "Transport"),
-            .init(emoji: "🏦", title: "Insurance"),
-            .init(emoji: "🏠", title: "Home"),
-            .init(emoji: "💼", title: "Work"),
-            .init(emoji: "🍔", title: "Food & Drink"),
-            .init(emoji: "💡", title: "Bills & Utilities"),
-            .init(emoji: "🎮", title: "Entertainment"),
-            .init(emoji: "🛍️", title: "Shopping"),
-            .init(emoji: "💊", title: "Health"),
-            .init(emoji: "📚", title: "Education"),
-            .init(emoji: "✈️", title: "Travel"),
-            .init(emoji: "🐶", title: "Pets"),
-            .init(emoji: "🎁", title: "Gifts"),
-            .init(emoji: "💰", title: "Savings"),
-            .init(emoji: "🧴", title: "Personal Care"),
-            .init(emoji: "👨‍👩‍👧", title: "Family"),
-            .init(emoji: "🚗", title: "Car"),
-            .init(emoji: "🪙", title: "Other")
+    static let data: [StoredCategory] = [
+        .init(emoji: "🚌", name: "Transport"),
+        .init(emoji: "🏦", name: "Insurance"),
+        .init(emoji: "🏠", name: "Home"),
+        .init(emoji: "💼", name: "Work"),
+        .init(emoji: "🍔", name: "Food & Drink"),
+        .init(emoji: "💡", name: "Bills & Utilities"),
+        .init(emoji: "🎮", name: "Entertainment"),
+        .init(emoji: "🛍️", name: "Shopping"),
+        .init(emoji: "💊", name: "Health"),
+        .init(emoji: "📚", name: "Education"),
+        .init(emoji: "✈️", name: "Travel"),
+        .init(emoji: "🐶", name: "Pets"),
+        .init(emoji: "🎁", name: "Gifts"),
+        .init(emoji: "💰", name: "Savings"),
+        .init(emoji: "🧴", name: "Personal Care"),
+        .init(emoji: "👨‍👩‍👧", name: "Family"),
+        .init(emoji: "🚗", name: "Car"),
+        .init(emoji: "🪙", name: "Other")
         ]
 }

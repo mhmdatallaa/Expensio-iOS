@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct ExpensioApp: App {
+    init() {
+        let store = CoreDateStorage()
+        EXPersistenceStore.shared.configure(store)
+    }
     var body: some Scene {
         WindowGroup {
             NavigationStack {
