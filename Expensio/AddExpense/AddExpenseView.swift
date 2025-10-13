@@ -1,0 +1,130 @@
+//
+//  AddExpenseView.swift
+//  Expensio
+//
+//  Created by Mohamed Atallah on 12/10/2025.
+//
+
+import SwiftUI
+
+
+struct AddExpenseView: View {
+    
+    @Bindable var viewModel: AddExpenseViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+//                Text("Add new expense")
+//                    .font(.headline)
+//                    .fontWeight(.bold)
+//                    .padding()
+//                    .padding(.bottom)
+               
+                
+                Form {
+                    Section {
+                        VStack {
+                            Text("Amount")
+                                .font(.callout)
+                                .opacity(0.7)
+                            TextField("$ 0.00", text: $viewModel.amount)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.center)
+                                .font(.largeTitle)
+                        }
+                    }
+                    .padding(.horizontal)
+                    Section("") {
+                        TextField("Title: ex: Coffee with friends", text: $viewModel.title)
+                            .padding(.leading)
+                        Picker("Category", selection: $viewModel.selectedCategory) {
+                                ForEach(viewModel.categories) { category in
+                                    Text("\(category.emoji) \(category.title)").tag(category)
+                                }
+                            }
+                            .pickerStyle(.menu)
+                            .padding(.horizontal)
+                        VStack(alignment: .leading) {
+                            Text("Optional note")
+                                .font(.caption)
+                                .opacity(0.6)
+
+                            TextEditor(text: $viewModel.note)
+                                .frame(height: 50)
+                                .font(.callout)
+                        }
+                        .padding(.horizontal)
+                        VStack(alignment: .leading) {
+                            Text("Quick Categories")
+                                .font(.system(size: 14, weight: .semibold))
+                                .opacity(0.7)
+                            
+                            LazyVGrid(columns: Array(repeating: .init(.flexible()), count: 4), spacing: 16) {
+                                ForEach(viewModel.categories[0..<4]) { category in
+                                    QuickCategoryItemView(categoryItem: category, selectedCategory: $viewModel.selectedCategory).tag(category)
+                                        .onTapGesture {
+                                            viewModel.selectedCategory = category
+                                        }
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+//                .padding(.top)
+                Button {
+                    if !viewModel.showError {
+                        viewModel.addNewExpense()
+                        viewModel.resetFields()
+                        dismiss()
+                    }
+                } label: {
+                    Text("Add")
+                        .font(.headline)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 55)
+                        .background(.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .padding(.horizontal, 40)
+                        .padding(.bottom)
+                }
+                
+            }
+            .navigationTitle("New expense")
+            .alert(viewModel.errorMessage, isPresented: $viewModel.showError) {
+                Button("Ok") { }
+            }
+        }
+    }
+}
+
+#Preview {
+    AddExpenseView(viewModel: AddExpenseViewModel())
+}
+
+
+// MARK: - Quick Category Item Component
+struct QuickCategoryItemView: View {
+    let categoryItem: Category
+    @Binding var selectedCategory: Category
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Text(categoryItem.emoji)
+                .font(.system(size: 28))
+            Text(categoryItem.title)
+                .font(.system(size: 12))
+                .fontWeight(categoryItem.id == selectedCategory.id ? .semibold : .regular)
+                .foregroundColor(categoryItem.id == selectedCategory.id ? .blue : .secondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(8)
+        .background(categoryItem.id == selectedCategory.id ? Color.blue.opacity(0.2) : Color.white)
+        .cornerRadius(12)
+        .shadow(color: .black.opacity(categoryItem.id == selectedCategory.id ? 0 : 0.1), radius: 4)
+        
+    }
+}
