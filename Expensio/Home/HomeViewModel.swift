@@ -10,11 +10,10 @@ import Foundation
 @Observable
 class HomeViewModel {
     
-    let store = EXPersistenceStore.shared
+    private let store = EXPersistenceStore.shared
     
     var expensies: [Expense] = []
     var totalAmount: Double = 0.00
-    var categories: [Category] = []
     var selectedCategory = StoredCategory.data[0]
     var amount: String = ""
     var title: String = ""
@@ -24,7 +23,6 @@ class HomeViewModel {
     var showError: Bool = false
     
     init() {
-        getCategories()
         getExpenses()
     }
     
@@ -68,11 +66,6 @@ class HomeViewModel {
     func getExpenses() {
         let expenses = store.getExpenses()
         self.expensies = expenses
-    }
-    
-    func getCategories() {
-        let categories = store.getCategories()
-        self.categories = categories
     }
     
     func deleteExpense(insets: IndexSet) {

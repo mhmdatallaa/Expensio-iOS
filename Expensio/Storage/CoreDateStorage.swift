@@ -10,8 +10,8 @@ import CoreData
 class CoreDateStorage: ExStore {
     
     
-    let container: NSPersistentContainer
-    let viewContext: NSManagedObjectContext
+    private let container: NSPersistentContainer
+    private let viewContext: NSManagedObjectContext
     
     init() {
         container = NSPersistentContainer(name: "Expensio")
