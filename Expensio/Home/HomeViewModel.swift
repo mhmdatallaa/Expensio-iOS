@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class AddExpenseViewModel {
+class HomeViewModel {
     
     var expensies: [Expense] = []
     var totalAmount: Double = 0.00

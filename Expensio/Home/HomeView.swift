@@ -9,12 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var viewModel = AddExpenseViewModel()
-    
-    
-    
-//    @State private var text = ""
+    @State private var viewModel = HomeViewModel()
     @State private var isAddExpenseSheetPresented = false
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 12) {

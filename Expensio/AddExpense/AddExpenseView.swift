@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddExpenseView: View {
     
-    @Bindable var viewModel: AddExpenseViewModel
+    @Bindable var viewModel: HomeViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -102,7 +102,7 @@ struct AddExpenseView: View {
 }
 
 #Preview {
-    AddExpenseView(viewModel: AddExpenseViewModel())
+    AddExpenseView(viewModel: HomeViewModel())
 }
 
 
