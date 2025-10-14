@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 18.0, *)
 struct RootView: View {
     var body: some View {
         TabView {
@@ -26,5 +27,9 @@ struct RootView: View {
 }
 
 #Preview {
-    RootView()
+    if #available(iOS 18.0, *) {
+        RootView()
+    } else {
+        // Fallback on earlier versions
+    }
 }

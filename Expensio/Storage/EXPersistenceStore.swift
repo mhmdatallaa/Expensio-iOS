@@ -25,12 +25,37 @@ class EXPersistenceStore {
         return store.fetchItems()
     }
     
-    func getCategories() -> [Category] {
+
+    
+//    func getCategories() -> [Category] {
+//        guard let store else {
+//            Log.error("Please configure the Persistence store with a store")
+//            return []
+//        }
+//        return store.fetchItems()
+//    }
+    
+    func getUsers() -> [User] {
         guard let store else {
             Log.error("Please configure the Persistence store with a store")
             return []
         }
         return store.fetchItems()
+    }
+    
+    func addUser(totalExpense: Double, expenses: [Expense]) {
+        let users = getUsers()
+        if users.count >= 1 {
+            return
+        } else {
+            if let store {
+                store.addUser(totalExpense: totalExpense, expenses: expenses)
+            }
+        }
+    }
+    
+    func updateUser(totalExpense: Double, expenses: [Expense]) {
+        store?.updateUser(totalExpense: totalExpense, expenses: expenses)
     }
     
     func addNewExpense(amount: Double, title: String, category: Category, note: String) {
@@ -40,6 +65,7 @@ class EXPersistenceStore {
         }
         store.addExpense(amount: amount, title: title, category: category, note: note)
     }
+    
     
     @discardableResult
     func addNewCategory(emoji: String, name: String) -> Category {

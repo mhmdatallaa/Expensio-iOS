@@ -91,7 +91,7 @@ struct ExpenseRowView: View {
                 Text(expense.title ?? "")
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundColor(Color.primary)
-                Text("⏰ \(String(describing: expense.dateCreated))")
+                Text("⏰ \(String(describing: expense.dateCreated ?? ""))")
                     .font(.system(size: 14))
                     .foregroundColor(Color.secondary)
             }
