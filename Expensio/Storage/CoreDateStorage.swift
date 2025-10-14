@@ -41,7 +41,7 @@ class CoreDateStorage: ExStore {
         expense.title = title
         expense.amount = amount
         expense.category = category
-        expense.dateCreated = Date()
+        expense.dateCreated = Date().dayHourMinuteString()
         
         saveCahangesInStorage()
     }
@@ -53,6 +53,23 @@ class CoreDateStorage: ExStore {
         
         saveCahangesInStorage()
         return category
+    }
+    
+    func addUser(totalExpense: Double, expenses: [Expense]) {
+        let user = User(context: viewContext)
+        user.totalExpense = totalExpense
+        user.expenses = NSSet(array: expenses)
+        saveCahangesInStorage()
+    }
+    
+    func updateUser(totalExpense: Double, expenses: [Expense]) {
+        let users: [User] = fetchItems()
+        if let user = users.first {
+            user.expenses = NSSet(array: expenses)
+            user.totalExpense = totalExpense
+            saveCahangesInStorage()
+
+        }
     }
     
     func delete<T: NSManagedObject>(_ item: T) {

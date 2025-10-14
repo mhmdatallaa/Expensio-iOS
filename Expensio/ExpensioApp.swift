@@ -12,6 +12,7 @@ struct ExpensioApp: App {
     init() {
         let store = CoreDateStorage()
         EXPersistenceStore.shared.configure(store)
+        EXPersistenceStore.shared.addUser(totalExpense: 0.00, expenses: [])
     }
     var body: some Scene {
         WindowGroup {
