@@ -9,14 +9,21 @@ import SwiftUI
 import Charts
 
 
-
 struct StatView: View {
     @State private var viewModel = StatViewModel()
     
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(spacing: 80) {
+                VStack(alignment: .center, spacing: 0) {
+                    VStack {
+                        Text("Expenses Amount")
+                        Text("Total: " + String(format: "$%.2f", viewModel.totalAmount))
+                            .fontWeight(.semibold)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .padding(.bottom, 12)
+                    }
                     Chart {
                         ForEach(viewModel.categoriesAmount) { category in
                             BarMark(
@@ -29,6 +36,7 @@ struct StatView: View {
                         }
                     }
                     .frame(height: 300)
+                    .padding(.bottom, 60)
                     //            .foregroundStyle(.pink.gradient)
                     
                     Chart {
@@ -42,7 +50,10 @@ struct StatView: View {
                             
                         }
                     }
+                    
+//                    .padding(.bottom, 40)
                     .frame(height: 200)
+
                 }
                 .padding()
                 .navigationTitle("Expenses Stats")

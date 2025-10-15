@@ -10,6 +10,7 @@ import Foundation
 @Observable
 class StatViewModel {
     var categoriesAmount: [CategoryAmount] = []
+    var totalAmount: Double = 0.0
     
     let store = EXPersistenceStore.shared
     
@@ -36,6 +37,7 @@ class StatViewModel {
             if emojiByCategory[title] == nil {
                 emojiByCategory[title] = emoji
             }
+            totalAmount += amount
         }
         // Map to CategoryAmount
         let mapped: [CategoryAmount] = totalsByCategory.map { (title, total) in
