@@ -41,7 +41,7 @@ class CoreDateStorage: ExStore {
         expense.title = title
         expense.amount = amount
         expense.category = category
-        expense.dateCreated = Date().dayHourMinuteString()
+        expense.dateCreated = Date()
         
         saveCahangesInStorage()
     }
