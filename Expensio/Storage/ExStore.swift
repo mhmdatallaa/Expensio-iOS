@@ -15,4 +15,5 @@ protocol ExStore {
     func addCategory(emoji: String, name: String) -> Category
     func delete<T: NSManagedObject>(_ item: T)
     func saveCahangesInStorage()
+    func resetData(forUser user: User)
 }

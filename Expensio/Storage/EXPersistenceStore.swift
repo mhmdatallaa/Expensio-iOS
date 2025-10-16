@@ -83,4 +83,13 @@ class EXPersistenceStore {
         }
         store.delete(expense)
     }
+    
+    func resetData() {
+        guard let user = getUsers().first else { return }
+        let expenses = getExpenses()
+        for expense in expenses {
+            store?.delete(expense)
+        }
+        store?.resetData(forUser: user)
+    }
 }

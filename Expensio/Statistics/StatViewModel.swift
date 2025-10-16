@@ -15,11 +15,6 @@ class StatViewModel {
     let store = EXPersistenceStore.shared
     
     
-    init() {
-        getCategoryAmount()
-    }
-    
-    
     
     func getCategoryAmount() {
         let expenses = store.getExpenses()
@@ -33,11 +28,10 @@ class StatViewModel {
             let amount = expense.amount
             
             totalsByCategory[title, default: 0] += amount
-            // Remember an emoji for this category if not already set
+            
             if emojiByCategory[title] == nil {
                 emojiByCategory[title] = emoji
             }
-            totalAmount += amount
         }
         // Map to CategoryAmount
         let mapped: [CategoryAmount] = totalsByCategory.map { (title, total) in
@@ -47,5 +41,9 @@ class StatViewModel {
         self.categoriesAmount = mapped
     }
     
+    func getTotalAmount() {
+        guard let user = store.getUsers().first else { return }
+        totalAmount = user.totalExpense
+    }
     
 }
