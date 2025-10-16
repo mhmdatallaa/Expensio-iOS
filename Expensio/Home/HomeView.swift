@@ -19,7 +19,7 @@ struct HomeView: View {
             VStack(spacing: 16) {
                 // MARK: - Header: Total Amount
                 VStack(spacing: 6) {
-                    Text("Total Balance")
+                    Text("Total Expenses")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Text(String(format: "$%.2f", viewModel.totalAmount))
