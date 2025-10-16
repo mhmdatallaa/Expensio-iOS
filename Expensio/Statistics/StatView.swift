@@ -8,64 +8,90 @@
 import SwiftUI
 import Charts
 
-
 struct StatView: View {
     @State private var viewModel = StatViewModel()
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                VStack(alignment: .center, spacing: 0) {
-                    VStack {
-                        Text("Expenses Amount")
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 32) {
+                    
+                    // MARK: - Header
+                    VStack(spacing: 6) {
+                        Text("Expense Summary")
+                            .font(.headline)
+                        
                         Text("Total: " + String(format: "$%.2f", viewModel.totalAmount))
-                            .fontWeight(.semibold)
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
-                            .padding(.bottom, 12)
+                            .font(.title3.weight(.semibold))
+                            .foregroundStyle(.tint)
                     }
-                    Chart {
-                        ForEach(viewModel.categoriesAmount) { category in
-                            BarMark(
-                                x: .value("Category", category.emoji),
-                                y: .value("Amount", category.amount)
-                            )
-                            .cornerRadius(12)
-                            .foregroundStyle(by: .value("Category", category.name))
-                            
-                        }
-                    }
-                    .frame(height: 300)
-                    .padding(.bottom, 60)
+                    .padding(.top)
                     
-                    Chart {
-                        ForEach(viewModel.categoriesAmount) { category in
-                            SectorMark(angle: .value("Amount", category.amount),
-                                       innerRadius: .fixed(35),
-                                       angularInset: 1,
-                            )
-                            
-                            .foregroundStyle(by: .value("Category", category.name))
-                            
+                    // MARK: - Bar Chart
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Spending by Category")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.secondary)
+                            .padding(.leading, 8)
+                        
+                        Chart {
+                            ForEach(viewModel.categoriesAmount) { category in
+                                BarMark(
+                                    x: .value("Category", category.emoji),
+                                    y: .value("Amount", category.amount)
+                                )
+                                .cornerRadius(6)
+                                .foregroundStyle(by: .value("Category", category.name))
+                            }
                         }
+                        .chartLegend(position: .bottom, spacing: 12)
+                        .frame(height: 280)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(.secondarySystemBackground))
+                                .shadow(color: .black.opacity(0.05), radius: 3, x: 0, y: 2)
+                        )
                     }
-                    .frame(height: 200)
                     
+                    // MARK: - Pie Chart
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Spending Distribution")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundColor(.secondary)
+                            .padding(.leading, 8)
+                        
+                        Chart {
+                            ForEach(viewModel.categoriesAmount) { category in
+                                SectorMark(
+                                    angle: .value("Amount", category.amount),
+                                    innerRadius: .ratio(0.55),
+                                    angularInset: 1.5
+                                )
+                                .foregroundStyle(by: .value("Category", category.name))
+                            }
+                        }
+                        .chartLegend(position: .leading, alignment: .center)
+                        .frame(height: 260)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(.secondarySystemBackground))
+                                .shadow(color: .black.opacity(0.05), radius: 3, x: 0, y: 2)
+                        )
+                    }
                 }
                 .padding()
-                .navigationTitle("Expenses Stats")
-//                .navigationBarTitleDisplayMode(.inline)
             }
+            .background(Color(.systemGroupedBackground))
+            .navigationTitle("Statistics")
         }
         .onAppear {
             viewModel.getCategoryAmount()
             viewModel.getTotalAmount()
         }
-        
     }
-    
 }
-
 
 #Preview {
     StatView()

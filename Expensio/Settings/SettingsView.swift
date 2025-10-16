@@ -13,7 +13,6 @@ struct SettingsView: View {
     @State private var showAlert = false
     var body: some View {
         NavigationView {
-//            VStack(alignment: .center) {
                 Form {
                     Section("Apperance") {
                         Toggle("Dark Mode", isOn: $isDarkMode)
@@ -38,7 +37,6 @@ struct SettingsView: View {
                         }
                     }
                     
-//                }
             }
             .navigationTitle("Settings")
             .alert("Are you sure you want to reset? all your data will be deleted.", isPresented: $showAlert) {
