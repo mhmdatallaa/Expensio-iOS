@@ -32,9 +32,10 @@ struct HomeView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .fill(.thinMaterial)
                         .shadow(radius: 2)
-                        .padding(.horizontal)
                 )
                 .padding(.bottom, 8)
+                .padding(.horizontal, 60 )
+
                 
                 // MARK: - Expenses List
                 if viewModel.expensies.isEmpty {
@@ -63,7 +64,7 @@ struct HomeView: View {
                 }
                     
                 }
-            .padding(.horizontal)
+//            .padding(.horizontal)
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Home")
             .toolbar {
@@ -76,6 +77,7 @@ struct HomeView: View {
                             .symbolRenderingMode(.hierarchical)
                     }
                     .tint(.accentColor)
+                    .padding()
                 }
             }
             .sheet(isPresented: $isAddExpenseSheetPresented) {

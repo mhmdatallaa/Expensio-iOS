@@ -78,7 +78,6 @@
 				6D45D2F52E9D4501006089E6 /* Logger */,
 				6D6951F02E9E71090013FFDB /* Date+Extension.swift */,
 				6DB0E1DD2EA117FB00DE989C /* Settings */,
-				6DB0E1DE2EA118A200DE989C /* ExpenseDetailView.swift */,
 			);
 			path = Expensio;
 			sourceTree = "<group>";
@@ -88,6 +87,7 @@
 			children = (
 				6D45D2C92E9D07FD006089E6 /* HomeView.swift */,
 				6D45D2D92E9D0D34006089E6 /* HomeViewModel.swift */,
+				6DB0E1DE2EA118A200DE989C /* ExpenseDetailView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
