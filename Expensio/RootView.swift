@@ -22,7 +22,7 @@ struct RootView: View {
                 }
                 
                 Tab("Settings", systemImage: "gear") {
-                    EmptyView()
+                    SettingsView()
                 }
             }
         }

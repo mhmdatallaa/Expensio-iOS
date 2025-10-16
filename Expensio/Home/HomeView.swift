@@ -60,6 +60,9 @@ struct HomeView: View {
                 AddExpenseView(viewModel: viewModel)
             }
         }
+        .onAppear {
+            viewModel.getExpenses()
+        }
 //        .searchable(text: $text)
     }
     

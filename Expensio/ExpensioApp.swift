@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ExpensioApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
     init() {
         let store = CoreDateStorage()
         EXPersistenceStore.shared.configure(store)
@@ -18,6 +19,7 @@ struct ExpensioApp: App {
         WindowGroup {
             NavigationStack {
                 RootView()
+                    .preferredColorScheme(isDarkMode ? .dark : .light)
             }
         }
     }

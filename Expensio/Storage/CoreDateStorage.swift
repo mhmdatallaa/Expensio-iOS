@@ -78,11 +78,18 @@ class CoreDateStorage: ExStore {
     }
     
     func saveCahangesInStorage() {
-        do {
-            try viewContext.save()
-        } catch {
-            Log.warning("Can't save chnages in coreData store.", error: error)
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                Log.warning("Can't save chnages in coreData store.", error: error)
+            }
         }
+    }
+    
+    func resetData(forUser user: User) {
+        viewContext.delete(user)
+        saveCahangesInStorage()
     }
     
     

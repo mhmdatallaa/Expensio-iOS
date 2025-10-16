@@ -37,7 +37,6 @@ struct StatView: View {
                     }
                     .frame(height: 300)
                     .padding(.bottom, 60)
-                    //            .foregroundStyle(.pink.gradient)
                     
                     Chart {
                         ForEach(viewModel.categoriesAmount) { category in
@@ -50,17 +49,17 @@ struct StatView: View {
                             
                         }
                     }
-                    
-//                    .padding(.bottom, 40)
                     .frame(height: 200)
-
+                    
                 }
                 .padding()
                 .navigationTitle("Expenses Stats")
+//                .navigationBarTitleDisplayMode(.inline)
             }
         }
         .onAppear {
             viewModel.getCategoryAmount()
+            viewModel.getTotalAmount()
         }
         
     }

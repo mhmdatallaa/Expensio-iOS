@@ -25,7 +25,6 @@ class HomeViewModel {
     
     init() {
         self.user = store.getUsers().first
-        getExpenses()
     }
     
     
