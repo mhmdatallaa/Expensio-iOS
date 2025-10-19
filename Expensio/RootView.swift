@@ -13,7 +13,7 @@ struct RootView: View {
     var body: some View {
         NavigationStack {
             TabView {
-                Tab("Home", systemImage: "wallet.bifold") {
+                Tab("Expenses", systemImage: "wallet.bifold") {
                     HomeView()
                 }
                 

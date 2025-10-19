@@ -25,15 +25,6 @@ class EXPersistenceStore {
         return store.fetchItems()
     }
     
-
-    
-//    func getCategories() -> [Category] {
-//        guard let store else {
-//            Log.error("Please configure the Persistence store with a store")
-//            return []
-//        }
-//        return store.fetchItems()
-//    }
     
     func getUsers() -> [User] {
         guard let store else {

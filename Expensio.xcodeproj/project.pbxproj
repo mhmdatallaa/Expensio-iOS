@@ -68,6 +68,7 @@
 				6D45D2D82E9D081C006089E6 /* AddExpense */,
 				6D45D2C52E9D07FD006089E6 /* Assets.xcassets */,
 				6D45D2C82E9D07FD006089E6 /* ExpensioApp.swift */,
+				6DB0E1DD2EA117FB00DE989C /* Settings */,
 				6D777D962EA00B15005F79A4 /* Statistics */,
 				6D45D2D72E9D0805006089E6 /* Home */,
 				6D45D2CA2E9D07FD006089E6 /* OnboardingView.swift */,
@@ -77,7 +78,6 @@
 				6D45D2E72E9D4332006089E6 /* Storage */,
 				6D45D2F52E9D4501006089E6 /* Logger */,
 				6D6951F02E9E71090013FFDB /* Date+Extension.swift */,
-				6DB0E1DD2EA117FB00DE989C /* Settings */,
 			);
 			path = Expensio;
 			sourceTree = "<group>";
